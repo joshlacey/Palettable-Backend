@@ -18,7 +18,7 @@ class Api::V1::PalatesController < ApplicationController
   end
 
   def create
-    @palate = Palate.new(user_id: params[:user_id], data: params[:data])
+    @palate = Palate.new(user_id: palate_params[:user_id], data: palate_params[:palate_data])
     if @palate.valid?
       @palate.save
       render json: @palate, status: 201
@@ -31,7 +31,7 @@ class Api::V1::PalatesController < ApplicationController
 private
 
   def palate_params
-    params.permit(:id, :data, :user_id)
+    params.permit(:id, :user_id, palate_data: [:svg, :color])
   end
 
 end

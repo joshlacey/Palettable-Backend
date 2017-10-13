@@ -4,9 +4,6 @@ class ApplicationController < ActionController::API
   before_action :authorized
 
 
-
-
-
   def issue_token(payload)
     token = JWT.encode(payload, "pickle")
   end
@@ -16,30 +13,10 @@ class ApplicationController < ActionController::API
   end
 
 
-  # def current_user
-  #   authenticate_or_request_with_http_token do |jwt_token, options|
-  #     begin
-  #       decoded_token = JWT.decode(jwt_token, "pickle")
-  #
-  #     rescue JWT::DecodeError
-  #       return nil
-  #     end
-  #
-  #     if decoded_token[0]["user_id"]
-  #       @current_user ||= User.find(decoded_token[0]["user_id"])
-  #     else
-  #     end
-  #   end
-  # end
-
-
-
-
   def decoded_token
     if auth_header
-      token = auth_header.split(" ")[1]
       begin
-        JWT.decode(token, "pickle", true, {algorithm: 'HS256'})
+        JWT.decode(auth_header, "pickle", true, {algorithm: 'HS256'})
       rescue JWT::DecodeError
         [{}]
       end
@@ -47,15 +24,15 @@ class ApplicationController < ActionController::API
     end
   end
 
-    def current_user
-      if decoded_token
-        if user_id = decoded_token[0]["user_id"]
-          @user = User.find(user_id)
-        else
-        end
+  def current_user
+    if decoded_token
+      if user_id = decoded_token[0]["user_id"]
+        @user = User.find(user_id)
       else
       end
+    else
     end
+  end
 
 
   def logged_in?
