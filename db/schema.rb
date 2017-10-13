@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 20171012183736) do
 
   create_table "notes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "palete_id", null: false
+    t.bigint "palate_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "paletes", force: :cascade do |t|
+  create_table "palates", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.json "data", null: false
     t.datetime "created_at", null: false
