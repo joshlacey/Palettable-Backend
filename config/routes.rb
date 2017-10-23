@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'users/:id/palates', to: 'users#my_palates'
       post 'login', to: 'auth#create'
       post 'signup', to: 'users#create'
+      delete 'palates/:id/delete', to: 'users#delete_palate'
     end
   end
 end
