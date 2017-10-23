@@ -12,8 +12,7 @@ def create
 end
 
 def my_palates
-  binding.pry
-  @palates = Palate.where(user_id: params[:user_id].order(:timestamps))
+  @palates = Palate.where(user_id: params[:id])
   render json: @palates, status: 200
 end
 

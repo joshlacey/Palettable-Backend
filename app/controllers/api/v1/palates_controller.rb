@@ -26,7 +26,7 @@ class Api::V1::PalatesController < ApplicationController
 private
 
   def palate_params
-    params.permit(:id, :user_id, palate_data: [ copy:[], :title, :note ])
+    params.permit(:id, :user_id, palate_data: [ :title, :note, copy:[] ])
   end
 
 end
