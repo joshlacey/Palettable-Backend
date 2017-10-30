@@ -22,7 +22,6 @@ class Api::V1::PalatesController < ApplicationController
     end
   end
 
-
 private
 
   def palate_params

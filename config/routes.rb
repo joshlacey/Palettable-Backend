@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'login', to: 'auth#create'
       post 'signup', to: 'users#create'
       delete 'palates/:id/delete', to: 'users#delete_palate'
+      patch 'palates/:id/edit', to: 'users#update_palate'
     end
   end
 end

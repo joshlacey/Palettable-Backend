@@ -26,10 +26,23 @@ def delete_palate
   end
 end
 
+def update_palate
+  @palate = Palate.find_by(id: params[:id])
+  @palate.data["title"] = signup_params[:title]
+  if signup_params[:note]
+    @palate.data["note"] = signup_params[:note]
+  end
+  if @palate.save
+    render json: {message: "Palate Updated"}, status: 200
+  else
+    render json: {message: "Unable to save"}, status: 500
+  end
+end
+
 private
 
 def signup_params
-  params.permit(:username, :password)
+  params.permit(:username, :password, :note, :title)
 end
 
 end
